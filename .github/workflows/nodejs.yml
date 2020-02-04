@@ -2,13 +2,11 @@ name: Node.js CI
 
 on: [push]
 
-env:
-  working-directory: ./client
-
 jobs:
   test_frontend:
     runs-on: node-latest
-
+    env:
+      working-directory: ./client
     strategy:
       matrix:
         node-version: [12.x]
@@ -16,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-      - uses: actions/setup-node@v1
-      - with:
+        uses: actions/setup-node@v1
+        with:
           node-version: ${{ matrix.node-version }}
       - working-directory: ${{ env.working-directory }}
       - run: pwd

@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test jest --testTimeout=10000",
-    "start": "NODE_ENV=development nodemon --exec babel-node server.js"
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node server.js",
+    "prod": "NODE_ENV=production babel-node server.js"
   },
   "jest": {
     "testEnvironment": "node",

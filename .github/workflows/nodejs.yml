@@ -31,7 +31,8 @@ jobs:
   test_backend:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./server
+      server: ./server
+      client: ./client
     strategy:
       matrix:
         node-version: [12.x]
@@ -44,8 +45,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}
+      - run: npm build
+        working-directory: ${{ env.client }}
       - run: npm test
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}
         env:
           CI: true

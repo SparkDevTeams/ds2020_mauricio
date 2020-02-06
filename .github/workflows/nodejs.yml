@@ -44,9 +44,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
+      - name: Npm install server
+        run: npm install
         working-directory: ${{ env.server }}
-      - run: npm run-script build
+      - name: Npm install client
+        run: npm install
+        working-directory: ${{ env.client }}
+      - name: Build the client
+        run: npm run-script build
         working-directory: ${{ env.client }}
       - run: npm test
         working-directory: ${{ env.server }}

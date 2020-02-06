@@ -46,7 +46,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
         working-directory: ${{ env.server }}
-      - run: npm build
+      - run: npm run-script build
         working-directory: ${{ env.client }}
       - run: npm test
         working-directory: ${{ env.server }}

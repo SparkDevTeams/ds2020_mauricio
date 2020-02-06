@@ -8,7 +8,8 @@ on:
 jobs:
   test_frontend:
     runs-on: ubuntu-latest
-    #
+    env:
+      working-directory: ./client
     strategy:
       matrix:
         node-version: [12.x]
@@ -22,10 +23,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       # - working-directory: ${{ env.working-directory }}
       - name: Check the cwd
-        env:
-          working-directory: ./client
         run: pwd
+        working-directory: ${{ env.working-directory }}
       - run: npm install
+        working-directory: ${{ env.working-directory }}
       - run: npm test
+        working-directory: ${{ env.working-directory }}
         env:
           CI: true

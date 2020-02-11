@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: "gcr.io/upe-projects/web-app@sha256:${{ github.sha }}"
+          image: gcr.io/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 8080

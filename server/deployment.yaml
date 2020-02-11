@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: app
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: app
-  template:
-    metadata:
-      labels:
-        app: app
     spec:
       containers:
         - name: web-app

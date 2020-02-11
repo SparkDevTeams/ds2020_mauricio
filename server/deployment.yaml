@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: REGISTRY_HOSTNAME/GKE_PROJECT/IMAGE:GITHUB_SHA
+          image: gcr.io/upe-projects/web-app@sha256:47097f2d51e3d93e8b0fed70b9bbcd678435bbd6c070be624d86796633a53db1
           ports:
             - containerPort: 8080

@@ -25,6 +25,7 @@ env:
   IMAGE: web-app
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: web-app
+  working-directory: ./client
 
 jobs:
   setup-build-publish-deploy:
@@ -52,18 +53,21 @@ jobs:
         run: |
           docker build -t "$REGISTRY_HOSTNAME"/"$GKE_PROJECT"/"$IMAGE":"$GITHUB_SHA" \
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" ./server
+            --build-arg GITHUB_REF="$GITHUB_REF" ./
+        working-directory: ${{ env.working-directory }}
 
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |
           docker push $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA
+        working-directory: ${{ env.working-directory }}
 
       # Set up kustomize
       - name: Set up Kustomize
         run: |
           curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
+        working-directory: ${{ env.working-directory }}
 
       # Deploy the Docker image to the GKE cluster
       - name: Deploy
@@ -73,3 +77,4 @@ jobs:
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
+        working-directory: ${{ env.working-directory }}

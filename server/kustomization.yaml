@@ -1,6 +1,6 @@
 ---
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: "kustomize.config.k8s.io/v1beta1"
+kind: "Kustomization"
 metadata:
     name: "web-app"
     namespace: "default"
@@ -19,24 +19,4 @@ spec:
     containers:
         - name: "web-app-sha256"
     image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
----
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
-metadata:
-    name: "web-app-hpa"
-    namespace: "default"
-    labels:
-    app: "web-app"
-spec:
-    scaleTargetRef:
-    kind: "Deployment"
-    name: "web-app"
-    apiVersion: "apps/v1"
-    minReplicas: 1
-    maxReplicas: 5
-    metrics:
-    - type: "Resource"
-    resource:
-    name: "cpu"
-    targetAverageUtilization: 80
     

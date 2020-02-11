@@ -18,7 +18,7 @@ spec:
   spec:
     containers:
       - name: "web-app-sha256"
-      image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
-      command: ["npm", "start"]
-      ports:
-        - containerPort: 8080
+        image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
+        command: ["npm", "start"]
+        ports:
+          - containerPort: 8080

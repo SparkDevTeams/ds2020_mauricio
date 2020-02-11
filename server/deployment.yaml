@@ -15,7 +15,7 @@ spec:
         app: app
     spec:
       containers:
-        - name: app
+        - name: web-app
           image: gcr.io/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 8080

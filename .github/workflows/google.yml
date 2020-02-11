@@ -73,7 +73,10 @@ jobs:
       - name: Deploy
         run: |
           gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
-          cat $GITHUB_WORKSPACE/deployment.yaml | sed 's/REGISTRY_HOSTNAME/'\"$REGISTRY_HOSTNAME\"'/' | sed 's/GKE_PROJECT/'\"$GKE_PROJECT\"'/' | sed 's/IMAGE/'\"$IMAGE\"'/' | sed 's/GITHUB_SHA/'\"$GITHUB_SHA\"'/' > $GITHUB_WORKSPACE/deployment.yaml
+          sed -i -e 's/REGISTRY_HOSTNAME/'"$REGISTRY_HOSTNAME"'/' deployment.yaml
+          sed -i -e 's/GKE_PROJECT/'"$GKE_PROJECT"'/' deployment.yaml
+          sed -i -e 's/IMAGE/'"$IMAGE"'/' deployment.yaml
+          sed -i -e 's/GITHUB_SHA/'"$GITHUB_SHA"'/' deployment.yaml
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide

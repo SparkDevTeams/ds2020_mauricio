@@ -1,5 +1,7 @@
 ![](https://github.com/SparkDevTeams/ds2020_mauricio/workflows/Node.js%20CI/badge.svg)
 ![Build and Deploy to GKE](https://github.com/SparkDevTeams/ds2020_mauricio/workflows/Build%20and%20Deploy%20to%20GKE/badge.svg)
+![Build and Deploy to AWS](https://github.com/SparkDevTeams/ds2020_mauricio/workflows/.github/workflows/aws.yml/badge.svg)
+
 
 # A simple Docker( React / Express ) App to practice CI / CD
 

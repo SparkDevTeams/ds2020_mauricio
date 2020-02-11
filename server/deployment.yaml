@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: web-app
   labels:
-    app: app
+    app: web-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app
+      app: web-app
   template:
     metadata:
       labels:
-        app: app
+        app: web-app
     spec:
       containers:
-        - name: app
-          image: "gcr.io/upe-projects/web-app@sha256:${{ github.sha }}"
+        - name: web-app
+          image:
           ports:
             - containerPort: 8080

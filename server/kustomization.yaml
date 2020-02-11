@@ -1,22 +1,10 @@
 ---
-apiVersion: "kustomize.config.k8s.io/v1beta1"
-kind: "Kustomization"
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 metadata:
-    name: "web-app"
-    namespace: "default"
-    labels:
-    app: "web-app"
-spec:
-    replicas: 3
-    selector:
-    matchLabels:
-    app: "web-app"
-    template:
-    metadata:
-    labels:
-    app: "web-app"
-    spec:
-    containers:
-        - name: "web-app-sha256"
-    image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
-    
+  name: "web-app"
+  namespace: "default"
+  labels:
+  app: "web-app"
+resources:
+  - deployment.yaml

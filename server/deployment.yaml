@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: web-app
   labels:
-    app: web-app
+    app: app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: web-app
+      app: app
   template:
     metadata:
       labels:
-        app: web-app
+        app: app
     spec:
       containers:
-        - name: web-app
+        - name: app
           image: gcr.io/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 8080

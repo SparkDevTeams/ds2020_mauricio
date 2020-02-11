@@ -25,7 +25,7 @@ env:
   IMAGE: web-app
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: web-app
-  working-directory: ./client
+  working-directory: ./server
 
 jobs:
   setup-build-publish-deploy:

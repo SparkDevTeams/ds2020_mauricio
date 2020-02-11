@@ -1,18 +1,21 @@
----
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: "web-app"
+  name: nginx-deployment
+  labels:
+    app: app
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: app
   template:
     metadata:
       labels:
-        deployment: "hello"
-  spec:
-    containers:
-      - name: "web-app-sha256"
-        image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
-        command: ["npm", "start"]
-        ports:
-          - containerPort: 8080
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: "gcr.io/upe-projects/web-app@sha256:$GITHUB_SHA"
+          ports:
+            - containerPort: 8080

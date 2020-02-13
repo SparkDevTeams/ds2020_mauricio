@@ -82,11 +82,8 @@ jobs:
       - name: Deploy
         run: |
           gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
-          sed -i -e 's/REGISTRY_HOSTNAME/'"$REGISTRY_HOSTNAME"'/' deployment.yaml
-          sed -i -e 's/IMAGE/'"$IMAGE"'/' deployment.yaml
-          sed -i -e 's/GITHUB_SHA/'"$GITHUB_SHA"'/' deployment.yaml
-          cat deployment.yaml
-          ./kustomize build . | kubectl apply -f -
+          kubectl create deployment $DEPLOYMENT_NAME --image="$REGISTRY_HOSTNAME"/"$GKE_PROJECT"/"$IMAGE":"$GITHUB_SHA"
+          kubectl expose deployment $DEPLOYMENT_NAME --type LoadBalancer --port 80 --target-port 8080
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
         working-directory: ${{ env.server }}

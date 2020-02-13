@@ -24,7 +24,7 @@ else if(process.env.NODE_ENV === 'development')
     db_url = "mongodb://localhost:27017/fortunate_dev_db";
     db_user = "";
     db_pw = "";
-    port = 3001;
+    port = 8080;
 
     console.log("Environment: " + process.env.NODE_ENV);
     console.log("DB URL: " + db_url);
@@ -37,7 +37,7 @@ else if(process.env.NODE_ENV === 'test')
     db_url = "mongodb://localhost:27017/fortunate_test_db";
     db_user = "";
     db_pw = "";
-    port = 3001;
+    port = 8080;
 
     console.log("Environment: " + process.env.NODE_ENV);
     console.log("DB URL: " + db_url);

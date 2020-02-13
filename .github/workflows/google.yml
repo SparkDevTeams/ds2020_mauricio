@@ -50,11 +50,11 @@ jobs:
           # via gcloud command-line tool.
           gcloud auth configure-docker
 
-      # Build the Docker image
+      # Build the client and copy into server client/ dir
       - name: Build Client, copy into server
         run: |
           npm install
-          npm build
+          npm run-script build
         working-directory: ${{ env.client }}
 
       # Build the Docker image

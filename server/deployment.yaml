@@ -3,19 +3,39 @@ kind: Deployment
 metadata:
   name: web-app
   labels:
-    app: app
+    app: web-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: web-app
   template:
     metadata:
       labels:
-        app: app
+        app: web-app
     spec:
       containers:
         - name: web-app
-          image: REGISTRY_HOSTNAME/upe_projects/IMAGE:GITHUB_SHA
+          image: gcr.io/google-samples/hello-app:1.0
           ports:
             - containerPort: 8080
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "web-app-hpa"
+  namespace: "default"
+  labels:
+    app: "web-app"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "web-app"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        targetAverageUtilization: 80

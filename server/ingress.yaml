@@ -2,11 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: web-app-ingress
+  namespace: default
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /*
-            backend:
-              serviceName: web-app-service
-              servicePort: 80
+  backend:
+    serviceName: web-app-service
+    servicePort: 8080

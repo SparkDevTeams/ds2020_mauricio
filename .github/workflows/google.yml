@@ -69,14 +69,14 @@ jobs:
       - name: Publish
         run: |
           docker push $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}
 
       # Set up kustomize
       - name: Set up Kustomize
         run: |
           curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}
 
       # Deploy the Docker image to the GKE cluster
       - name: Deploy
@@ -89,4 +89,4 @@ jobs:
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}

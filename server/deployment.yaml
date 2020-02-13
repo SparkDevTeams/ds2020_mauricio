@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: gcr.io/google-samples/hello-app:1.0
+          image: REGISTRY_HOSTNAME/upe_projects/IMAGE:GITHUB_SHA
           ports:
             - containerPort: 8080
 ---

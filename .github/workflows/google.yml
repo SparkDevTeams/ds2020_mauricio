@@ -25,7 +25,9 @@ env:
   IMAGE: web-app
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: web-app
-  working-directory: ./server
+  server: ./server
+  client: ./client
+  frontend: ./frontend
 
 jobs:
   setup-build-publish-deploy:
@@ -49,12 +51,19 @@ jobs:
           gcloud auth configure-docker
 
       # Build the Docker image
+      - name: Build Client, copy into server
+        run: |
+          npm install
+          npm build
+        working-directory: ${{ env.client }}
+
+      # Build the Docker image
       - name: Build
         run: |
           docker build -t "$REGISTRY_HOSTNAME"/"$GKE_PROJECT"/"$IMAGE":"$GITHUB_SHA" \
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
             --build-arg GITHUB_REF="$GITHUB_REF" ./
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.server }}
 
       # Push the Docker image to Google Container Registry
       - name: Publish

@@ -25,8 +25,8 @@ spec:
           ports:
             - containerPort: 27017
           volumeMounts:
-            mountPath: /data/db
-            name: mongodb
+            - mountPath: /data/db
+              name: mongodb
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"

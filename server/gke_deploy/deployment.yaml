@@ -19,14 +19,6 @@ spec:
           image: REGISTRY_HOSTNAME/sparkdev2019/IMAGE:GITHUB_SHA
           ports:
             - containerPort: 8080
-        - name: mongo
-          image: mongo
-          imagePullPolicy: "Always"
-          ports:
-            - containerPort: 27017
-          volumeMounts:
-            - mountPath: /data/db
-              name: mongodb
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"

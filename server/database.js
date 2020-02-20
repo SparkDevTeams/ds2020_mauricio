@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Fortune from "./schemas/fortune";
-import {db_url, db_user, db_pw} from "./env_setup";
+import {db_url} from "./env_setup";
 
 // Fix error encountered during npm test: 
 // ReferenceError: regeneratorRuntime is not defined 

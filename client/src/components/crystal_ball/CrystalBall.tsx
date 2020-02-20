@@ -6,13 +6,7 @@ import "./CrystalBall.css";
 const CrystalBall: React.FC = () => {
   let url: string = "";
 
-  if (process.env.NODE_ENV === "production") {
-    url = "http://" + process.env.REACT_APP_PROD_SERVER + "/fortune";
-  } else if (process.env.NODE_ENV === "development") {
-    url = "http://" + process.env.REACT_APP_DEV_SERVER + "/fortune";
-  } else if (process.env.NODE_ENV === "test") {
-    url = "http://" + process.env.REACT_APP_TEST_SERVER + "/fortune";
-  }
+  url = "http://localhost:8080/fortune";
 
   const [msg, setMsg] = useState("");
 

@@ -16,26 +16,7 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: REGISTRY_HOSTNAME/sparkdev2019/IMAGE:GITHUB_SHA
+          image: webapp
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
----
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
-metadata:
-  name: "web-app-hpa"
-  namespace: "default"
-  labels:
-    app: "web-app"
-spec:
-  scaleTargetRef:
-    kind: "Deployment"
-    name: "web-app"
-    apiVersion: "apps/v1"
-  minReplicas: 1
-  maxReplicas: 2
-  metrics:
-    - type: "Resource"
-      resource:
-        name: "cpu"
-        targetAverageUtilization: 80

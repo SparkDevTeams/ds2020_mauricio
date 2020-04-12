@@ -5,7 +5,7 @@ let port;
 
 // Setup environment
 console.log("Starting config");
-db_url = "mongodb://localhost:27017/fortunate_dev_db";
+db_url = "mongodb://mongo:27017/fortune";
 port = 8080;
 
 console.log("Environment: " + process.env.NODE_ENV);

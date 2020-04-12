@@ -6,19 +6,20 @@ import "./CrystalBall.css";
 const CrystalBall: React.FC = () => {
   let url: string = "";
 
-  url = "http://localhost:8080/fortune";
+  url = window.location.protocol + "//" + window.location.host + "/fortune";
 
   const [msg, setMsg] = useState("");
 
   let get_message = () => {
-    // console.log("Clicked!");
+    console.log("Clicked!");
+    console.log(url);
     axios
       .get(url)
-      .then(res => {
+      .then((res) => {
         // console.log(res);
         setMsg(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };

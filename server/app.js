@@ -16,6 +16,7 @@ app.use(express.static('client'))
 
 // API
 app.get('/fortune', async (req, res) => {
+    console.log("Processing get at /fortune");
     res.send(await get_random());
 })
 

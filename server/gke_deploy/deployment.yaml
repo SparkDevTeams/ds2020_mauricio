@@ -17,6 +17,5 @@ spec:
       containers:
         - name: web-app
           image: REGISTRY_HOSTNAME/upe_projects/IMAGE:GITHUB_SHA
-          imagePullPolicy: Never
           ports:
             - containerPort: 8080

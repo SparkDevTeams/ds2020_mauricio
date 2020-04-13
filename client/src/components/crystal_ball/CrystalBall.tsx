@@ -31,7 +31,7 @@ const CrystalBall: React.FC = () => {
         <h5 className="card-title">What is your future?</h5>
         <h4 id="msg">{msg}</h4>
         {/* <h4 id="msg">Blah!!</h4> */}
-        <a href="#" onClick={get_message} className="btn btn-primary">
+        <a href="/" onClick={get_message} className="btn btn-primary">
           Get My Fortune Told
         </a>
       </div>

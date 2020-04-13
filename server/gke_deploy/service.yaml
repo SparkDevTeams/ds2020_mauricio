@@ -12,4 +12,4 @@ spec:
       port: 8080
   selector:
     app: "web-app"
-  type: "NodePort"
+  type: "LoadBalancer"

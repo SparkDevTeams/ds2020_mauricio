@@ -3,7 +3,7 @@ name: Node.js CI
 on:
   push:
     branches:
-      - test
+      - gke_deploy
 
 jobs:
   test_frontend:

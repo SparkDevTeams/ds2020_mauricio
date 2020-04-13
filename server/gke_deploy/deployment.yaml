@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: REGISTRY_HOSTNAME/upe_projects/IMAGE:GITHUB_SHA
+          image: REGISTRY_HOSTNAME/spring2020-274107/IMAGE:GITHUB_SHA
           ports:
             - containerPort: 8080

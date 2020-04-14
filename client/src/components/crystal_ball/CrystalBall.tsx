@@ -7,6 +7,7 @@ const CrystalBall: React.FC = () => {
   let url: string = "";
 
   url = window.location.protocol + "//" + window.location.host + "/fortune";
+  // url = "http://104.196.179.144:8080/fortune";
 
   const [msg, setMsg] = useState("");
 
@@ -16,10 +17,12 @@ const CrystalBall: React.FC = () => {
     axios
       .get(url)
       .then((res) => {
-        // console.log(res);
+        console.log('Response:')
+        console.log(res);
         setMsg(res.data);
       })
       .catch((err) => {
+        console.log("Error:")
         console.log(err);
       });
   };
